@@ -1,9 +1,15 @@
-import styles from "./chat.css";
+import "./chat.css";
 import React, { useState, useEffect, useRef } from "react";
 
-export default function Chat({ mensagens, enviarMensagem, usuarioAtivo }) {
-  const [texto, setTexto] = useState("");
-  const chatRef = useRef(null);
+interface ChatProps {
+  mensagens: { usuario: string; mensagem: string }[];
+  enviarMensagem: (mensagem: string) => void;
+  usuarioAtivo: string;
+}
+
+export default function Chat({ mensagens, enviarMensagem, usuarioAtivo }: ChatProps) {
+  const [texto, setTexto] = useState<string>("");
+  const chatRef = useRef<HTMLUListElement | null>(null);
 
   const enviar = () => {
     if (texto.trim()) {

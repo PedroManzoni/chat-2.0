@@ -1,7 +1,13 @@
-import styles from "./barraLateral.css";
+import './barraLateral.css';
 import React, { useState } from "react";
 
-function BarraLateral({ usuarioAtivo, alternarUsuario, limparChat }) {
+interface BarraLateralProps {
+  usuarioAtivo: string;
+  alternarUsuario: (usuario: string) => void;
+  limparChat: () => void;
+}
+
+function BarraLateral({ usuarioAtivo, alternarUsuario, limparChat }: BarraLateralProps) {
   return (
     <div className="lateral">
       <button

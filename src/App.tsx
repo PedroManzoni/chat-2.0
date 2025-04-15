@@ -3,24 +3,31 @@ import BarraLateral from "./componentes/barraLateral";
 import Chat from "./componentes/chat";
 import React, { useState } from "react";
 
+
+interface MensagemProps {
+  usuario: string;
+  mensagem: string;
+  data?: string;
+  horario?: string;
+}
 function App() {
-  const [usuarioAtivo, setUsuarioAtivo] = useState("usuario1");
-  const [mensagens, setMensagens] = useState(() => {
+  const [usuarioAtivo, setUsuarioAtivo] = useState<string>("usuario1");
+  const [mensagens, setMensagens] = useState<MensagemProps[]>(() => {
     const mensagensSalvas = localStorage.getItem("mensagens");
     return mensagensSalvas ? JSON.parse(mensagensSalvas) : [];
   });
 
-  const alternarUsuario = (usuario) => {
+  const alternarUsuario = (usuario: string): void => {
     setUsuarioAtivo(usuario);
   };
 
-  const limparChat = () => {
+  const limparChat = ():void => {
     setMensagens([]);
     localStorage.clear();
     setUsuarioAtivo("usuario1");
   };
 
-  const enviarMensagem = (mensagem) => {
+  const enviarMensagem = (mensagem: string): void => {
     const novaMensagem = {
       usuario: usuarioAtivo,
       mensagem,
